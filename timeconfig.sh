@@ -6,14 +6,14 @@ function debug_error {
     echo "Error: $*"
 }
 
-source <(cat /etc/os-release | grep PRETTY_NAME)
+source <(cat /etc/os-release)
 
-OS_NAME=${PRETTY_NAME}
+OS_NAME=${NAME}
 
 if [ "${OS_NAME}" == "Arch Linux" ]; then
   if [ "$1" == "--spt" ]; then
     echo "Starting configuration..."
-    printf "Do you want to set timezone manually or automatilly? (a/m) "
+    printf "Do you want to set timezone manually or automatically? (a/m) "
     read junk
     if [ ${junk} == "a" ]; then
         exec timedatectl set-timezone ${TIME_ZONE}
